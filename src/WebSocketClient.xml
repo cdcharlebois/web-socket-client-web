@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="mendix.websocketclient.WebSocketClient" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+  xmlns="http://www.mendix.com/widget/1.0/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+  <name>Web Socket Client</name>
+  <description>Client actions for a web socket</description>
+  <icon/>
+  <properties>
+    <propertyGroup caption="General">
+      <property key="socketUrl" type="expression" defaultValue="">
+        <caption>Web Socket URL</caption>
+        <description>Socket Url to connect to</description>
+        <returnType type="String" />
+      </property>
+      <property key="messageAttribute" type="attribute" required="true">
+        <caption>Message Attr</caption>
+        <description>This will be populated with an inbound message when it arrives, and accessible to the On Message nanoflow</description>
+        <attributeTypes>
+          <attributeType name="String" />
+        </attributeTypes>
+      </property>
+      <property key="onMessage" type="action">
+        <caption>On Message</caption>
+        <description>Action to fire when a message is received from the websocket</description>
+      </property>
+    </propertyGroup>
+  </properties>
+</widget>
