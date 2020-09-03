@@ -12,13 +12,16 @@ export class WebSocketClient extends Component {
         this._ws = null;
     }
     componentDidUpdate() {
-        const { socketUrl, onMessage, messageAttribute } = this.props;
+        const { socketUrl, onMessage, messageAttribute, onConnect } = this.props;
         if (socketUrl.status !== "available" || messageAttribute.status !== "available") return;
         if (this.state.isConnected === false) {
             const ws = new WebSocket(socketUrl.value);
             ws.onopen = () => {
                 console.trace(`connected to websocket at ${socketUrl.value}`);
                 this.setState({ isConnected: true });
+                if (onConnect && onConnect.canExecute) {
+                    onConnect.execute();
+                }
             };
             ws.onclose = () => {
                 console.trace(`disconnected from websocket`);
@@ -26,11 +29,13 @@ export class WebSocketClient extends Component {
             };
             ws.onmessage = message => {
                 messageAttribute.setValue(message.data);
-                if (onMessage.canExecute) {
+                if (onMessage && onMessage.canExecute) {
                     onMessage.execute();
                 }
             };
             this._ws = ws;
+            window.mx.__ws = window.mx.__ws || {};
+            window.mx.__ws[socketUrl.value] = ws;
         }
     }
 

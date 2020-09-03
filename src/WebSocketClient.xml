@@ -23,6 +23,10 @@
         <caption>On Message</caption>
         <description>Action to fire when a message is received from the websocket</description>
       </property>
+      <property key="onConnect" type="action">
+        <caption>On Connect</caption>
+        <description>Action to fire when connection to the websocket is established</description>
+      </property>
     </propertyGroup>
   </properties>
 </widget>
