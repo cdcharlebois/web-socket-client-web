@@ -1,4 +1,4 @@
-import { Component, createElement, useEffect, useState } from "react";
+import { Component, createElement } from "react";
 import { hot } from "react-hot-loader/root";
 
 import "./ui/WebSocketClient.css";
@@ -51,4 +51,4 @@ export class WebSocketClient extends Component {
     }
 }
 
-export default hot(WebSocketClient);
+// export default hot(WebSocketClient);
